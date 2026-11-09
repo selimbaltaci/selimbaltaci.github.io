@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>İletişim | Düşler ve Yanılsamalar — Selim Baltacı</title>
+<meta name="description" content="Fotoğraf ve iş birlikleri için Selim Baltacı ile iletişime geçin.">
+<meta property="og:title" content="İletişim | Düşler ve Yanılsamalar — Selim Baltacı">
+<meta property="og:description" content="Fotoğraf ve iş birlikleri için Selim Baltacı ile iletişime geçin.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#faf9f7">
+<script>document.documentElement.className = "js";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+	<link rel="icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="images/simge.png">
+
+</head>
+<body id="top">
+  <header class="topbar wrap ">
+    <a class="brand" href="site.html#akis">Düşler ve Yanılsamalar <span>/ Selim Baltacı</span></a>
+    <button class="burger" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </header>
+<main class="contact wrap">
+  <section class="intro">
+    <span class="kicker caps">05 · İletişim</span>
+    <h1>Bir düşünceyi, bir fotoğrafı ya da yalnızca bir merhabayı paylaşmak isterseniz...</h1>
+    <ul class="contact-links">
+      <li><a href="#" data-email><span class="k caps">E-posta</span><span class="v" data-email-text></span></a></li>
+      <li><a href="#" data-instagram><span class="k caps">Instagram</span><span class="v" data-instagram-text></span></a></li>
+    </ul>
+  </section>
+  <form class="contact-form" novalidate>
+    <div class="field">
+      <label class="caps" for="ad">Ad Soyad</label>
+      <input id="ad" name="ad" type="text" autocomplete="name" required>
+    </div>
+    <div class="field">
+      <label class="caps" for="eposta">E-posta</label>
+      <input id="eposta" name="eposta" type="email" autocomplete="email" required>
+    </div>
+    <div class="field">
+      <label class="caps" for="mesaj">Mesajınız</label>
+      <textarea id="mesaj" name="mesaj" required></textarea>
+    </div>
+    <div class="form-actions">
+      <button class="send" type="submit">Gönder <span class="arr" aria-hidden="true">→</span></button>
+      <p class="form-note">Gönder’e bastığınızda e-posta uygulamanız mesajınızla birlikte açılır.</p>
+    </div>
+    <p class="form-status" role="status" aria-live="polite"></p>
+  </form>
+</main>
+
+<footer class="site-footer wrap caps">
+  <span>© 2026 Selim Baltacı · Tüm hakları saklıdır</span>
+  <a href="#top">Yukarı ↑</a>
+</footer>
+
+<!-- AÇILIR MENÜ -->
+<div class="scrim" data-close-menu></div>
+<aside class="drawer" id="menu" aria-label="Site menüsü" aria-hidden="true">
+  <div class="drawer-head">
+    <span class="caps">Menü</span>
+    <button class="drawer-close" type="button" aria-label="Menüyü kapat" data-close-menu>×</button>
+  </div>
+  <nav>
+      <a href="site.html#akis"><span class="n">01</span><span class="t">Ana Sayfa</span></a>
+      <a href="portfolio.html"><span class="n">02</span><span class="t">Portfolyo</span></a>
+      <a href="hikayeler.html"><span class="n">03</span><span class="t">Karelerin Ardında</span></a>
+      <a href="hakkimda.html"><span class="n">04</span><span class="t">Hakkımda</span></a>
+      <a href="iletisim.html" aria-current="page"><span class="n">05</span><span class="t">İletişim</span></a>
+  </nav>
+  <p class="drawer-foot caps">Düşler ve Yanılsamalar · Selim Baltacı</p>
+</aside>
+
+<script src="js/site.js"></script>
+	<script>
+document.addEventListener('contextmenu', function(e){ if(e.target.tagName==='IMG') e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ if(e.target.tagName==='IMG') e.preventDefault(); });
+</script>
+</body>
+</html>

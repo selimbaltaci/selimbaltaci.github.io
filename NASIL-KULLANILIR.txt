@@ -1,0 +1,44 @@
+DÜŞLER VE YANILSAMALAR — BEYAZ SİTE
+==================================
+
+KURULUM (bir kez)
+1) Site klasörünüzün yedeğini alın (klasörü kopyalayıp "site-yedek" diye adlandırın).
+2) Bu paketteki her şeyi site klasörünüze kopyalayın, aynı adlı dosyaların
+   yerine geçsin:
+      index.html, site.html, portfolio.html,
+      monochrom.html, yanilsamalar.html, secilmis-kareler.html, yeni-kareler.html,
+      hikayeler.html, hikayeler1.html, hikayeler2.html, hikayeler3.html,
+      hakkimda.html, iletisim.html,
+      css/site.css, js/site.js,
+      images/hakkimda-fotograf.jpg,
+      galeriyi_guncelle.py   (eski betiğin yerine geçer)
+   images klasöründeki fotoğraflarınıza dokunulmaz.
+3) Terminalde site klasörüne girip galerileri bir kez oluşturun:
+      python3 galeriyi_guncelle.py
+
+E-POSTA VE INSTAGRAM
+   js/site.js dosyasının en üstündeki iki satırı kendi bilgilerinizle değiştirin:
+      email: "eposta@adresiniz.com",
+      instagram: "instagram_kullanici_adiniz"
+   Sitedeki tüm e-posta / Instagram yazıları buradan dolar.
+
+YENİ FOTOĞRAF EKLEMEK
+   Fotoğrafı ilgili klasöre koyun (ör. images/yeni-kareler) ve:
+      python3 galeriyi_guncelle.py
+   En yeni fotoğraf galerinin en üstünde, Yeni Kareler'dekiler ana sayfada görünür.
+
+SAFARİ'DE DENEMEK
+      python3 -m http.server 8000
+   sonra Safari'de:  http://127.0.0.1:8000/site.html
+
+FOTOĞRAF YOLLARI (değiştirmek isterseniz)
+   Ana sayfa üst fotoğrafı ... site.html      images/IMG_2035.jpeg
+   Portfolyo kapakları ....... portfolio.html images/<seri>/fotoXX.JPG
+   Fotoğraf ve Hayat ......... images/fotograf-ve-hayat.jpeg
+   Son Lamba ................. images/son-lamba.jpg
+   Şehrin Sessizliği ......... images/monochrom/foto108.JPG
+   Hakkımda .................. images/hakkimda-fotograf.jpg
+
+HİKÂYE METİNLERİ
+   hikayeler1.html (Son Lamba) ve hikayeler2.html (Fotoğraf ve Hayat) içinde
+   "HİKÂYENİN DEVAMI" yazan yere kalan paragrafları <p>...</p> olarak yapıştırın.
