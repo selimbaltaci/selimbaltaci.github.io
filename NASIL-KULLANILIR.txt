@@ -1,44 +1,88 @@
-DÜŞLER VE YANILSAMALAR — BEYAZ SİTE
-==================================
+DÜŞLER VE YANILSAMALAR — HAFİF WEB KOPYASI
 
-KURULUM (bir kez)
-1) Site klasörünüzün yedeğini alın (klasörü kopyalayıp "site-yedek" diye adlandırın).
-2) Bu paketteki her şeyi site klasörünüze kopyalayın, aynı adlı dosyaların
-   yerine geçsin:
-      index.html, site.html, portfolio.html,
-      monochrom.html, yanilsamalar.html, secilmis-kareler.html, yeni-kareler.html,
-      hikayeler.html, hikayeler1.html, hikayeler2.html, hikayeler3.html,
-      hakkimda.html, iletisim.html,
-      css/site.css, js/site.js,
-      images/hakkimda-fotograf.jpg,
-      galeriyi_guncelle.py   (eski betiğin yerine geçer)
-   images klasöründeki fotoğraflarınıza dokunulmaz.
-3) Terminalde site klasörüne girip galerileri bir kez oluşturun:
-      python3 galeriyi_guncelle.py
+Bu paket 12 Kasım 2026 tarihinde yayında olan sitenizden hazırlanmıştır.
+Yayındaki GitHub siteniz kendiliğinden değişmedi.
 
-E-POSTA VE INSTAGRAM
-   js/site.js dosyasının en üstündeki iki satırı kendi bilgilerinizle değiştirin:
-      email: "eposta@adresiniz.com",
-      instagram: "instagram_kullanici_adiniz"
-   Sitedeki tüm e-posta / Instagram yazıları buradan dolar.
+ÖNCE YEDEK
+1. Mac'inizdeki mevcut site klasörünün ayrı bir kopyasını alın.
+2. Orijinal yüksek çözünürlüklü fotoğraflarınızı başka bir arşiv klasöründe tutun.
+3. Paketi masaüstünde ayrı bir klasöre açın. Önce bu kopyayı deneyin.
+4. Henüz GitHub'a göndermediğiniz yeni fotoğraf veya yazılar varsa önce karşılaştırın;
+   paketi eski klasörünüzün üzerine düşünmeden yapıştırmayın.
 
-YENİ FOTOĞRAF EKLEMEK
-   Fotoğrafı ilgili klasöre koyun (ör. images/yeni-kareler) ve:
-      python3 galeriyi_guncelle.py
-   En yeni fotoğraf galerinin en üstünde, Yeni Kareler'dekiler ana sayfada görünür.
+DENEME
+Paketin site klasöründe Terminal'i açıp:
+    python3 -m http.server 8000
+Tarayıcıda:
+    http://127.0.0.1:8000
+Sayfaları gezip fotoğraflara basın. Aynı Wi-Fi'daki telefonda Mac'in yerel IP adresi kullanılabilir.
 
-SAFARİ'DE DENEMEK
-      python3 -m http.server 8000
-   sonra Safari'de:  http://127.0.0.1:8000/site.html
+YAYINA GÖNDERME
+1. Eski sitenin yedeğini aldıktan ve yeni kopyayı kontrol ettikten sonra, GitHub Desktop'ta
+   Repository > Show in Finder ile selimbaltaci.github.io klasörünü açın.
+2. Paketteki HTML dosyalarını, css ve js klasörlerini, fotoğraf güncelleyicisini,
+   web_fotograflari.py, foto-sirasi.json, foto-web.json, foto-aciklamalari.json,
+   sitemap.xml ve robots.txt dosyalarını buraya kopyalayın.
+3. images içindeki hafif web fotoğrafları ve site-media klasörü de birlikte gitmelidir.
+   Yalnız HTML'leri kopyalamak yeterli değildir.
+4. Eski çok büyük fotoğraflar yerine paketteki web kopyaları kullanılmalı.
+   Yedeğini aldığınız asılları yayın klasöründe bırakmayın.
+5. GitHub Desktop'ta değişiklikleri kontrol edin. Not yazın > Commit to main > Push origin.
+6. Yayın işlemi bitince https://selimbaltaci.github.io/ adresini kontrol edin.
+   Güncellenmiş fotoğraf ve metinler ancak gönderimden sonra görünür.
 
-FOTOĞRAF YOLLARI (değiştirmek isterseniz)
-   Ana sayfa üst fotoğrafı ... site.html      images/IMG_2035.jpeg
-   Portfolyo kapakları ....... portfolio.html images/<seri>/fotoXX.JPG
-   Fotoğraf ve Hayat ......... images/fotograf-ve-hayat.jpeg
-   Son Lamba ................. images/son-lamba.jpg
-   Şehrin Sessizliği ......... images/monochrom/foto108.JPG
-   Hakkımda .................. images/hakkimda-fotograf.jpg
+YENİ FOTOĞRAF EKLEME
+İlk güncellemeden önce bir kez Pillow kurulmalıdır:
+    python3 -m pip install --user "Pillow>=9.1,<12"
+Kurulum işlemi izin veya ortam hatası verirse, hata metnini paylaşın; gelişigüzel sistem ayarı değiştirmeyin.
 
-HİKÂYE METİNLERİ
-   hikayeler1.html (Son Lamba) ve hikayeler2.html (Fotoğraf ve Hayat) içinde
-   "HİKÂYENİN DEVAMI" yazan yere kalan paragrafları <p>...</p> olarak yapıştırın.
+Her güncellemede:
+1. Fotoğrafı images içindeki ilgili seri klasörüne koyun.
+2. Site klasöründe:
+       python3 galeriyi_guncelle.py
+3. Yeni fotoğrafın en üstte göründüğünü kontrol edin.
+4. GitHub Desktop'tan değişen fotoğrafları, site-media kopyalarını, sayfaları ve JSON kayıtlarını gönderin.
+
+Güncelleyici yalnız değişen fotoğrafları işler. Küçük görüntüler ile büyük web görüntüleri
+birlikte hazırlanır. Önce 40 kare, düğmeye her basışta 40 daha açılır.
+Fotoğraf sırası foto-sirasi.json içinde korunur. Bu dosyayı silmeyin.
+Kaynak fotoğrafı aynı adla değiştirmek sırayı bozmaz; yeni dosya adı eklemek onu en üste alır.
+
+Güncelleyici JPEG'i küçültürken fotoğrafın asıl kopyasını site klasörünün DIŞINDA,
+yanındaki Selim-Fotograf-Asillari klasörüne saklar. Bu yedek klasörünü GitHub'a yüklemeyin.
+Yine de fotoğraf arşivinizi ayrıca saklamanız önerilir.
+site-media klasörünü images içine taşımayın; bunlar fotoğrafların ayrı web kopyalarıdır.
+
+FOTOĞRAF AÇIKLAMASI
+foto-aciklamalari.json, fotoğrafları görmeden siteyi kullanan kişiler için kısa açıklamalar içerir.
+Yeni fotoğraf için açıklama yoksa numaralı genel açıklama kullanılır.
+Görüntüyü tarif eden kısa bir açıklama ekleyebilirsiniz; fotoğrafın üzerine yazılmaz.
+
+İLETİŞİM
+Form doğrudan mesaj teslim etmez. E-posta uygulamasını açmaya çalışır; mesaj oradan gönderilir.
+Uygulama açılmazsa sayfada yazan e-posta adresine doğrudan yazılabilir.
+İletişim bilgileri js/site.js içindeki SITE kaydında; HTML'de de aynı bilgiler bulunmaktadır.
+E-posta veya Instagram değişirse bu iki yerdeki bilgileri birlikte güncelleyin.
+
+ALAN ADI
+İleride alan adı bağlarsanız web_fotograflari.py içindeki SITE_URL değerini yeni HTTPS adresiyle
+değiştirip güncelleyiciyi çalıştırın. Şimdilik gerçek adresiniz olan GitHub adresi kullanılır.
+
+KONTROL
+    python3 -m unittest test_galeri.py
+Bu küçük testler sıra, 40+40 gösterim, renk, oran, boyut ve yeniden üretimi denetler.
+
+DEĞİŞENLER
+- 13 HTML sayfası: hafif fotoğraf bağlantıları, tekil sayfa/paylaşım bilgileri, ortak simge.
+- css/site.css: görünüm korunarak eski kullanılmayan galeri kuralları temizlendi.
+- js/site.js: klavye odağı, tek işlem yapan iletişim bağlantıları, yükleme hatası/yeniden deneme.
+- galeriyi_guncelle.py ve web_fotograflari.py: kalıcı fotoğraf hazırlama ve güncelleme.
+- foto-sirasi.json, foto-web.json, foto-aciklamalari.json: sıra, kopya kayıtları ve açıklamalar.
+- images ve site-media: yalnız web fotoğrafları.
+- sitemap.xml ve robots.txt: herkese açık sayfa listesi.
+
+ÖNEMLİ SINIRLAR
+Sağ tıklamayı kapatmak indirmeyi tamamen engellemez. Asıl büyük fotoğraflarınızı internete yüklemeyin.
+Önceden GitHub'a gönderilmiş eski fotoğraflar kayıt geçmişinde bulunabilir; bu paket geçmişi silmez.
+Hikâyeler ve Hakkımda yazısı değiştirilmedi. Yeni hikâye veya ziyaretçi takip sistemi eklenmedi.
+Paketin açılma hızı sizin internetinizde farklı olabilir; gerçek ziyaretçi ölçümü yapılmış sayılmaz.

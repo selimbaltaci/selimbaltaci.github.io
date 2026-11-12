@@ -5,18 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>İletişim | Düşler ve Yanılsamalar — Selim Baltacı</title>
 <meta name="description" content="Fotoğraf ve iş birlikleri için Selim Baltacı ile iletişime geçin.">
-<meta property="og:title" content="İletişim | Düşler ve Yanılsamalar — Selim Baltacı">
-<meta property="og:description" content="Fotoğraf ve iş birlikleri için Selim Baltacı ile iletişime geçin.">
-<meta property="og:type" content="website">
 <meta name="theme-color" content="#faf9f7">
 <script>document.documentElement.className = "js";</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
-	<link rel="icon" href="favicon.ico">
+	<link rel="canonical" href="https://selimbaltaci.github.io/iletisim.html">
+<link rel="icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="images/simge.png">
-
+<meta property="og:title" content="İletişim | Düşler ve Yanılsamalar — Selim Baltacı">
+<meta property="og:description" content="Fotoğraf ve iş birlikleri için Selim Baltacı ile iletişime geçin.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://selimbaltaci.github.io/iletisim.html">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body id="top">
   <header class="topbar wrap ">
@@ -28,8 +30,8 @@
     <span class="kicker caps">05 · İletişim</span>
     <h1>Bir düşünceyi, bir fotoğrafı ya da yalnızca bir merhabayı paylaşmak isterseniz...</h1>
     <ul class="contact-links">
-      <li><a href="#" data-email><span class="k caps">E-posta</span><span class="v" data-email-text></span></a></li>
-      <li><a href="#" data-instagram><span class="k caps">Instagram</span><span class="v" data-instagram-text></span></a></li>
+      <li><a href="mailto:selim.baltaci@gmail.com" data-email><span class="k caps">E-posta</span><span class="v" data-email-text>selim.baltaci@gmail.com</span></a></li>
+      <li><a href="https://www.instagram.com/pestepo/" data-instagram><span class="k caps">Instagram</span><span class="v" data-instagram-text>@pestepo</span></a></li>
     </ul>
   </section>
   <form class="contact-form" novalidate>
@@ -46,8 +48,8 @@
       <textarea id="mesaj" name="mesaj" required></textarea>
     </div>
     <div class="form-actions">
-      <button class="send" type="submit">Gönder <span class="arr" aria-hidden="true">→</span></button>
-      <p class="form-note">Gönder’e bastığınızda e-posta uygulamanız mesajınızla birlikte açılır.</p>
+      <button class="send" type="submit">E-postayla gönder <span class="arr" aria-hidden="true">→</span></button>
+      <p class="form-note">Mesajınızı e-posta uygulamanızda açıp oradan gönderebilirsiniz. Uygulama açılmazsa yukarıdaki e-posta adresini kullanın.</p>
     </div>
     <p class="form-status" role="status" aria-live="polite"></p>
   </form>
@@ -60,7 +62,7 @@
 
 <!-- AÇILIR MENÜ -->
 <div class="scrim" data-close-menu></div>
-<aside class="drawer" id="menu" aria-label="Site menüsü" aria-hidden="true">
+<aside class="drawer" role="dialog" aria-modal="true" tabindex="-1" id="menu" aria-label="Site menüsü" aria-hidden="true">
   <div class="drawer-head">
     <span class="caps">Menü</span>
     <button class="drawer-close" type="button" aria-label="Menüyü kapat" data-close-menu>×</button>
@@ -76,9 +78,6 @@
 </aside>
 
 <script src="js/site.js"></script>
-	<script>
-document.addEventListener('contextmenu', function(e){ if(e.target.tagName==='IMG') e.preventDefault(); });
-document.addEventListener('dragstart', function(e){ if(e.target.tagName==='IMG') e.preventDefault(); });
-</script>
+	
 </body>
 </html>

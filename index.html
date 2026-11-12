@@ -17,9 +17,14 @@
   body.welcome-page { overflow: hidden; }
   body.welcome-page .welcome { height: 100vh; height: 100svh; min-height: 0; }
 </style>
-	<link rel="icon" href="favicon.ico">
+	<link rel="canonical" href="https://selimbaltaci.github.io/">
+<link rel="icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="images/simge.png">
-
+<meta property="og:title" content="Hoş Geldiniz | Düşler ve Yanılsamalar — Selim Baltacı">
+<meta property="og:description" content="Selim Baltacı'nın fotoğrafları ve hikâyeleri: gördüğümle hatırladığım arasındaki boşlukta çekilmiş kareler.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://selimbaltaci.github.io/">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="welcome-page">
 
@@ -37,7 +42,7 @@
 
 <!-- AÇILIR MENÜ -->
 <div class="scrim" data-close-menu></div>
-<aside class="drawer" id="menu" aria-label="Site menüsü" aria-hidden="true">
+<aside class="drawer" role="dialog" aria-modal="true" tabindex="-1" id="menu" aria-label="Site menüsü" aria-hidden="true">
   <div class="drawer-head">
     <span class="caps">Menü</span>
     <button class="drawer-close" type="button" aria-label="Menüyü kapat" data-close-menu>×</button>

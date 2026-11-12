@@ -22,13 +22,14 @@ import re
 import struct
 import html
 import unicodedata
+from pathlib import Path
+from web_fotograflari import (hazirla, sirali_fotograflar, sirayi_kaydet,
+    image_tag, full_src, foto_alt, sayfalari_hazirla)
 
 KLASOR = os.path.dirname(os.path.abspath(__file__))
 UZANTILAR = (".jpg", ".jpeg", ".png", ".webp", ".gif")
 ANA_SAYFA_ADET = 7
 
-# "Temas baskısı" düzenini kullanan galeriler. Diğerleri eski duvar düzeninde kalır.
-# Hepsine uygulamak için: TEMAS_DUZENI = ["monochrom", "yanilsamalar", "secilmis-kareler", "yeni-kareler"]
 TEMAS_DUZENI = ["monochrom", "yanilsamalar", "secilmis-kareler", "yeni-kareler"]
 # Sayfa açıldığında kaç kare görünsün; "Daha fazla kare göster" her basışta bu kadar daha açar.
 PARTI = 40
@@ -140,20 +141,7 @@ def klasor_bul(adaylar):
 
 
 def fotograflar(klasor_adi):
-    yol = os.path.join(KLASOR, "images", klasor_adi)
-    if not os.path.isdir(yol):
-        return []
-    liste = []
-    for kok, klasorler, dosyalar in os.walk(yol):
-        klasorler[:] = [k for k in klasorler if not k.startswith(".")]
-        for ad in dosyalar:
-            if ad.startswith(".") or not ad.lower().endswith(UZANTILAR):
-                continue
-            tam = os.path.join(kok, ad)
-            src = os.path.relpath(tam, KLASOR).replace(os.sep, "/")
-            liste.append((os.path.getmtime(tam), src, tam))
-    liste.sort(key=lambda x: x[0], reverse=True)   # en yeni en üstte
-    return [(src, tam) for _, src, tam in liste]
+    return sirali_fotograflar(Path(KLASOR), klasor_adi)
 
 
 def klasoru_anlat(klasor_adi):
@@ -194,16 +182,13 @@ def temas_baskisi(baslik, foto_listesi):
     kareler = []
     for k, (src, tam) in enumerate(foto_listesi):
         boyut = olcu(tam)
-        oran = 1.333
-        wh = ""
-        if boyut and boyut[0] and boyut[1]:
-            oran = max(0.4, min(3.0, boyut[0] / float(boyut[1])))
-            wh = ' width="' + str(boyut[0]) + '" height="' + str(boyut[1]) + '"'
+        oran = boyut[0] / float(boyut[1]) if boyut and boyut[1] else 1.333
         sonra = " is-later" if k >= PARTI else ""
-        e = html.escape(src)
-        kareler.append('    <a class="s-item' + sonra + '" href="' + e + '" style="--r:' + ("%.3f" % oran) +
-                       '"><img src="' + e + '" alt="' + baslik + ' fotoğraf ' + str(k + 1) + '"' + wh +
-                       ' loading="lazy" decoding="async"><span class="s-no caps">' + str(k + 1).zfill(2) + '</span></a>')
+        alt = foto_alt(KLASOR, src, baslik + " fotoğraf " + str(k + 1))
+        photo = image_tag(KLASOR, src, alt, loading="eager" if k < 4 else "lazy")
+        kareler.append('    <a class="s-item' + sonra + '" href="' + html.escape(full_src(KLASOR, src)) +
+                       '" style="--r:' + ("%.6f" % oran) + '">' + photo +
+                       '<span class="s-no caps">' + str(k + 1).zfill(2) + '</span></a>')
     blok = ('  <section class="sheet wrap" data-lightbox data-title="' + baslik +
             '" aria-label="' + baslik + ' fotoğrafları">' + NL + NL.join(kareler) + NL + '  </section>')
     if toplam > PARTI:
@@ -248,25 +233,8 @@ def galeri_sayfasi(i, foto_listesi):
         sekmeler.append('  <a href="' + s[0] + '.html"' + cur + '><span class="n">' + s[2] +
                         '</span><span>' + s[3] + '</span></a>')
 
-    ek_js = ""
-    if sayfa in TEMAS_DUZENI:
-        galeri = temas_baskisi(baslik, foto_listesi)
-        ek_js = DAHA_FAZLA_JS
-    else:
-        kareler = []
-        for src, tam in foto_listesi:
-            boyut = olcu(tam)
-            wh = ""
-            if boyut:
-                wh = ' width="' + str(boyut[0]) + '" height="' + str(boyut[1]) + '"'
-            kareler.append('    <a class="g-item reveal" href="' + html.escape(src) + '"><img src="' +
-                           html.escape(src) + '" alt="' + baslik + ' fotoğraf"' + wh +
-                           ' loading="lazy" decoding="async"></a>')
-        if kareler:
-            galeri = ('  <section class="masonry wrap" data-lightbox data-title="' + baslik +
-                      '" aria-label="' + baslik + ' fotoğrafları">' + NL + NL.join(kareler) + NL + '  </section>')
-        else:
-            galeri = '  <p class="empty wrap">Bu seriye yakında yeni kareler eklenecek.</p>'
+    galeri = temas_baskisi(baslik, foto_listesi)
+    ek_js = DAHA_FAZLA_JS
 
     adet = str(len(foto_listesi))
     return """<!DOCTYPE html>
@@ -286,7 +254,7 @@ def galeri_sayfasi(i, foto_listesi):
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
 <link rel="icon" href="favicon.ico">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" href="images/simge.png">
 </head>
 <body id="top">
   <!-- Bu sayfa galeriyi_guncelle.py tarafından oluşturulur. Elle değiştirmeyin. -->
@@ -409,9 +377,9 @@ def ana_sayfayi_guncelle(yeni_liste, diger_listeler):
         return
     satirlar = []
     for src, _ in kutulara_yerlestir(secilen):
-        s = html.escape(src)
-        satirlar.append('<a class="photo-placeholder" href="' + s + '"><img src="' + s +
-                        '" alt="Yeni Kareler fotoğraf" loading="lazy"></a>')
+        alt = foto_alt(KLASOR, src, "Yeni Kareler fotoğraf")
+        satirlar.append('<a class="photo-placeholder" href="' + html.escape(full_src(KLASOR, src)) + '">' +
+                        image_tag(KLASOR, src, alt) + '</a>')
     desen = re.compile(r'(<div class="new-photos"[^>]*>)[\s\S]*?(</div>\s*<!-- YENİ KARELER BİTİŞ -->)')
     if not desen.search(metin):
         print("  ! site.html içinde Yeni Kareler kutusu bulunamadı, ana sayfa atlandı.")
@@ -427,12 +395,16 @@ def ana_sayfayi_guncelle(yeni_liste, diger_listeler):
 
 
 def main():
+    print("Web fotoğrafları hazırlanıyor…")
+    hazirla(Path(KLASOR))
     print("Galeriler güncelleniyor…")
+    orders = {}
     yeni_liste = []
     diger_listeler = []
     for i, s in enumerate(SERILER):
         klasor_adi = klasor_bul(s[1])
         liste = fotograflar(klasor_adi)
+        orders[klasor_adi] = [src for src, _ in liste]
         with open(os.path.join(KLASOR, s[0] + ".html"), "w", encoding="utf-8") as f:
             f.write(galeri_sayfasi(i, liste))
         print("  ✓ " + s[0] + ".html  ←  images/" + klasor_adi + "  (" + str(len(liste)) + " fotoğraf)")
@@ -443,6 +415,8 @@ def main():
         else:
             diger_listeler.append(liste)
     ana_sayfayi_guncelle(yeni_liste, diger_listeler)
+    sirayi_kaydet(Path(KLASOR), orders)
+    sayfalari_hazirla(Path(KLASOR))
     print("✨ İŞLEM TAMAM: Tüm galeri sayfaları ve site.html güncellendi!")
 
 

@@ -21,12 +21,37 @@ var SITE = {
     });
     doc.querySelectorAll("[data-email-text]").forEach(function (s) { s.textContent = SITE.email; });
     doc.querySelectorAll("[data-instagram-text]").forEach(function (s) { s.textContent = "@" + SITE.instagram; });
-    /* Ana sayfadaki hızlı iletişim: hem e-posta/Instagram açılır, hem iletisim.html */
-    doc.querySelectorAll("[data-also]").forEach(function (a) {
-        a.addEventListener("click", function () {
-            var to = a.getAttribute("data-also");
-            setTimeout(function () { leave(to); }, 600);
+    /* Tek odak sınırı: arkadaki sayfa açık pencere kapanana kadar etkisiz. */
+    var activeDialog = null;
+    var blocked = [];
+    function lockDialog(dialog) {
+        unlockDialog();
+        activeDialog = dialog;
+        Array.prototype.forEach.call(body.children, function (element) {
+            if (element === dialog || element.contains(dialog) || element.tagName === "SCRIPT" ||
+                (dialog.id === "menu" && element.classList.contains("scrim"))) return;
+            blocked.push({ element: element, inert: element.inert });
+            element.inert = true;
         });
+    }
+    function unlockDialog() {
+        blocked.forEach(function (item) { item.element.inert = item.inert; });
+        blocked = [];
+        activeDialog = null;
+    }
+    doc.addEventListener("keydown", function (e) {
+        if (e.key !== "Tab" || !activeDialog) return;
+        var controls = Array.prototype.filter.call(activeDialog.querySelectorAll(
+            'a[href], button:not([disabled]), input, textarea, [tabindex="0"]'), function (el) {
+                return !el.hidden && el.getClientRects().length > 0;
+            });
+        if (!controls.length) { e.preventDefault(); activeDialog.focus(); return; }
+        var first = controls[0], last = controls[controls.length - 1];
+        if (e.shiftKey && (doc.activeElement === first || !activeDialog.contains(doc.activeElement))) {
+            e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && (doc.activeElement === last || !activeDialog.contains(doc.activeElement))) {
+            e.preventDefault(); first.focus();
+        }
     });
 
     /* ---------- Açılır menü ---------- */
@@ -38,6 +63,7 @@ var SITE = {
         lastOpener = e && e.currentTarget;
         body.classList.add("menu-open");
         drawer.setAttribute("aria-hidden", "false");
+        lockDialog(drawer);
         burgers.forEach(function (b) { b.setAttribute("aria-expanded", "true"); });
         var first = drawer.querySelector("nav a");
         setTimeout(function () { if (first) first.focus({ preventScroll: true }); }, 60);
@@ -46,6 +72,7 @@ var SITE = {
         if (!drawer || !body.classList.contains("menu-open")) return;
         body.classList.remove("menu-open");
         drawer.setAttribute("aria-hidden", "true");
+        unlockDialog();
         burgers.forEach(function (b) { b.setAttribute("aria-expanded", "false"); });
         if (lastOpener) lastOpener.focus({ preventScroll: true });
     }
@@ -54,13 +81,14 @@ var SITE = {
 
     /* ---------- Sayfalar arası yumuşak geçiş ---------- */
     function leave(href) {
+        closeMenu();
         body.classList.add("is-leaving");
         setTimeout(function () { window.location.href = href; }, 380);
     }
     doc.addEventListener("click", function (e) {
         if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         var a = e.target.closest ? e.target.closest("a") : null;
-        if (!a || !a.getAttribute("href") || a.target === "_blank" || a.hasAttribute("download") || a.hasAttribute("data-also")) return;
+        if (!a || !a.getAttribute("href") || a.target === "_blank" || a.hasAttribute("download")) return;
         var url;
         try { url = new URL(a.href, window.location.href); } catch (err) { return; }
         if (url.protocol !== "http:" && url.protocol !== "https:" && url.protocol !== "file:") return;
@@ -77,18 +105,20 @@ var SITE = {
     });
 
     /* ---------- Büyük fotoğraf (beyaz zemin) ---------- */
-    var viewer, vImg, vCount, vCap, vPrev, vNext, list = [], index = 0, opener = null, touchX = null;
+    var viewer, vImg, vCount, vCap, vPrev, vNext, vMessage, list = [], index = 0, opener = null, touchX = null;
     function buildViewer() {
         viewer = doc.createElement("div");
         viewer.className = "viewer";
         viewer.setAttribute("role", "dialog");
         viewer.setAttribute("aria-modal", "true");
         viewer.setAttribute("aria-label", "Büyük fotoğraf");
+        viewer.setAttribute("tabindex", "-1");
         viewer.innerHTML =
             '<div class="v-top"><span class="v-count caps"></span>' +
             '<button class="v-close" type="button" aria-label="Kapat">×</button></div>' +
             '<div class="v-stage"><button class="v-nav v-prev" type="button" aria-label="Önceki fotoğraf">‹</button>' +
             '<img alt="">' +
+            '<div class="v-message" hidden><span role="status">Fotoğraf yüklenemedi.</span><button type="button" class="v-retry">Yeniden dene</button></div>' +
             '<button class="v-nav v-next" type="button" aria-label="Sonraki fotoğraf">›</button></div>' +
             '<div class="v-cap"></div>';
         body.appendChild(viewer);
@@ -97,13 +127,22 @@ var SITE = {
         vCap = viewer.querySelector(".v-cap");
         vPrev = viewer.querySelector(".v-prev");
         vNext = viewer.querySelector(".v-next");
+        vMessage = viewer.querySelector(".v-message");
+        vMessage.querySelector("button").addEventListener("click", function () {
+            show(index, true);
+        });
         viewer.querySelector(".v-close").addEventListener("click", closeViewer);
         vPrev.addEventListener("click", function () { show(index - 1); });
         vNext.addEventListener("click", function () { show(index + 1); });
         viewer.querySelector(".v-stage").addEventListener("click", function (e) {
             if (e.target === e.currentTarget) closeViewer();
         });
-        vImg.addEventListener("load", function () { vImg.classList.remove("is-loading"); });
+        vImg.addEventListener("load", function () {
+            vImg.classList.remove("is-loading"); viewer.classList.remove("is-error"); vMessage.hidden = true;
+        });
+        vImg.addEventListener("error", function () {
+            vImg.classList.remove("is-loading"); viewer.classList.add("is-error"); vMessage.hidden = false;
+        });
         viewer.addEventListener("touchstart", function (e) { touchX = e.touches[0].clientX; }, { passive: true });
         viewer.addEventListener("touchend", function (e) {
             if (touchX === null) return;
@@ -112,11 +151,13 @@ var SITE = {
             touchX = null;
         });
     }
-    function show(i) {
+    function show(i, retry) {
         index = (i + list.length) % list.length;
         var item = list[index];
+        vMessage.hidden = true;
+        viewer.classList.remove("is-error");
         if (vImg.getAttribute("src") !== item.href) vImg.classList.add("is-loading");
-        vImg.src = item.href;
+        vImg.src = retry ? item.href + (item.href.indexOf("?") < 0 ? "?" : "&") + "retry=" + Date.now() : item.href;
         vImg.alt = item.alt;
         vCount.textContent = String(index + 1).padStart(2, "0") + " / " + String(list.length).padStart(2, "0");
         vCap.textContent = item.title;
@@ -127,16 +168,19 @@ var SITE = {
         });
     }
     function openViewer(items, i, from) {
+        closeMenu();
         if (!viewer) buildViewer();
         list = items; opener = from;
         show(i);
         viewer.classList.add("is-open");
+        lockDialog(viewer);
         root.style.overflow = "hidden";
         viewer.querySelector(".v-close").focus({ preventScroll: true });
     }
     function closeViewer() {
         if (!viewer || !viewer.classList.contains("is-open")) return;
         viewer.classList.remove("is-open");
+        unlockDialog();
         root.style.overflow = "";
         if (opener) opener.focus({ preventScroll: true });
     }
@@ -169,42 +213,6 @@ var SITE = {
         if (e.key === "Escape") closeMenu();
     });
 
-    /* ---------- Galeri: sütunlara yerleştirme (en yeni en üstte) ---------- */
-    doc.querySelectorAll(".masonry").forEach(function (m) {
-        var items = Array.prototype.slice.call(m.querySelectorAll(".g-item"));
-        if (!items.length) return;
-        var current = 0;
-        function ratio(it) {
-            var img = it.querySelector("img");
-            var w = img && (+img.getAttribute("width") || img.naturalWidth);
-            var h = img && (+img.getAttribute("height") || img.naturalHeight);
-            return w && h ? h / w : 1.25;
-        }
-        function layout() {
-            var w = m.clientWidth;
-            var n = w > 1100 ? 4 : w > 680 ? 3 : 2;
-            if (n === current) return;
-            current = n;
-            var cols = [], heights = [];
-            m.innerHTML = "";
-            for (var i = 0; i < n; i++) {
-                var c = doc.createElement("div");
-                c.className = "m-col";
-                m.appendChild(c);
-                cols.push(c); heights.push(0);
-            }
-            items.forEach(function (it, k) {
-                var target = k < n ? k : heights.indexOf(Math.min.apply(null, heights));
-                cols[target].appendChild(it);
-                heights[target] += ratio(it) + 0.08;
-            });
-            m.classList.add("is-laid");
-        }
-        layout();
-        var t;
-        window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(layout, 150); });
-    });
-
     /* ---------- Kaydırınca yumuşak belirme ---------- */
     var reveals = doc.querySelectorAll(".reveal");
     if ("IntersectionObserver" in window) {
@@ -233,7 +241,9 @@ var SITE = {
             window.location.href = "mailto:" + SITE.email +
                 "?subject=" + encodeURIComponent(subject) +
                 "&body=" + encodeURIComponent(content);
-            if (status) status.textContent = "Teşekkürler " + name.split(" ")[0] + "! E-posta uygulamanız mesajınızla açıldı; göndermek için orada “Gönder”e basın.";
+            if (status) status.textContent = "Mesaj henüz gönderilmedi. E-posta uygulamanız açılırsa oradan “Gönder”e basın. Açılmazsa " + SITE.email + " adresine yazabilirsiniz.";
         });
     }
+    doc.addEventListener("contextmenu", function (e) { if (e.target.tagName === "IMG") e.preventDefault(); });
+    doc.addEventListener("dragstart", function (e) { if (e.target.tagName === "IMG") e.preventDefault(); });
 })();
