@@ -178,10 +178,26 @@ def foto_alt(root, src, fallback):
     return descriptions(root).get(src, fallback)
 
 
+HIKAYE_DESENI = re.compile(r"hikayeler\d+\.html$")
+
+
+def hikaye_sayfasi(ad):
+    """hikayeler1.html, hikayeler2.html ... hepsi hikâye sayfasıdır; yeni numaralar da dahil."""
+    return bool(HIKAYE_DESENI.match(ad))
+
+
+def sablon_mu(ad):
+    """sablon- ile başlayan dosyalar Selim'in dolduracağı boş şablondur; yayınlanmaz."""
+    return ad.startswith("sablon-")
+
+
 def head_update(text, filename, root):
     url = SITE_URL if filename == "index.html" else SITE_URL + quote(filename)
-    title = html.unescape(re.search(r"<title>(.*?)</title>", text, re.S).group(1))
-    desc = re.search(r'<meta name="description" content="([^"]*)"', text).group(1)
+    # Elle yazilan sayfada baslik ya da ozet unutabilir; guncelleyici bu yuzden durmamali.
+    title_match = re.search(r"<title>(.*?)</title>", text, re.S)
+    title = html.unescape(title_match.group(1)) if title_match else filename
+    desc_match = re.search(r'<meta name="description" content="([^"]*)"', text)
+    desc = desc_match.group(1) if desc_match else ''
     # Keep one metadata source, never concatenate conflicting tags.
     text = re.sub(r'<meta (?:property="og:[^"]+"|name="twitter:[^"]+")[^>]*>\s*', '', text)
     text = re.sub(r'<link rel="(?:canonical|icon|apple-touch-icon)"[^>]*>\s*', '', text)
@@ -189,9 +205,8 @@ def head_update(text, filename, root):
             '<link rel="icon" href="favicon.ico">',
             '<link rel="apple-touch-icon" href="images/simge.png">',
             '<meta property="og:title" content="' + html.escape(title) + '">',
-            '<meta property="og:description" content="' + desc + '">',
-            '<meta property="og:type" content="' + ('article' if filename in {
-                'hikayeler1.html', 'hikayeler2.html', 'hikayeler3.html'} else 'website') + '">',
+            '<meta property="og:description" content="' + html.escape(desc) + '">',
+            '<meta property="og:type" content="' + ('article' if hikaye_sayfasi(filename) else 'website') + '">',
             '<meta property="og:url" content="' + url + '">',
             '<meta name="twitter:card" content="summary_large_image">']
     cache = json_oku(Path(root) / "foto-web.json", {})
@@ -208,6 +223,8 @@ def sayfalari_hazirla(root):
     root = Path(root)
     cache = json_oku(root / "foto-web.json", {})
     for page in root.glob('*.html'):
+        if sablon_mu(page.name):
+            continue
         text = page.read_text(encoding='utf-8')
         def replace_img(match):
             tag = match.group(0)
@@ -225,7 +242,7 @@ def sayfalari_hazirla(root):
                 role, loading, attrs = 'full', 'eager', attrs + ' fetchpriority="high"'
             elif page.name == 'portfolio.html':
                 role, loading = 'cover', 'eager'
-            elif page.name in {'hikayeler1.html','hikayeler2.html','hikayeler3.html'}:
+            elif hikaye_sayfasi(page.name):
                 role, loading = 'full', 'eager'
             else:
                 role, loading = ('cover' if page.name == 'hakkimda.html' else 'thumb'), ('eager' if 'loading="eager"' in tag or page.name == 'hakkimda.html' else 'lazy')
@@ -262,7 +279,7 @@ def sayfalari_hazirla(root):
         text = text.replace('<aside class="drawer" id="menu"', '<aside class="drawer" role="dialog" aria-modal="true" tabindex="-1" id="menu"')
         text = head_update(text, page.name, root)
         page.write_text(text, encoding='utf-8')
-    pages = sorted(p.name for p in root.glob('*.html'))
+    pages = sorted(p.name for p in root.glob('*.html') if not sablon_mu(p.name))
     urls = [SITE_URL if p == 'index.html' else SITE_URL + quote(p) for p in pages]
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     xml += '\n'.join('  <url><loc>' + escape(url) + '</loc></url>' for url in urls) + '\n</urlset>\n'
