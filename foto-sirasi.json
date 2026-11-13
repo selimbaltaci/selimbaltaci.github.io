@@ -1,9 +1,9 @@
 {
   "monochrom": [
-    "images/monochrom/foto114.JPG.jpg",
-    "images/monochrom/foto113.JPG.jpg",
-    "images/monochrom/foto111.JPG.jpg",
-    "images/monochrom/foto110.JPG.jpg",
+    "images/monochrom/foto110.JPG",
+    "images/monochrom/foto111.JPG",
+    "images/monochrom/foto113.JPG",
+    "images/monochrom/foto114.JPG",
     "images/monochrom/foto109.JPG",
     "images/monochrom/foto106.JPG",
     "images/monochrom/foto108.JPG",
@@ -71,6 +71,8 @@
     "images/yanilsamalar/foto47.JPG"
   ],
   "secilmis-kareler": [
+    "images/secilmis-kareler/foto116.jpg",
+    "images/secilmis-kareler/foto115.JPG",
     "images/secilmis-kareler/foto117.JPG",
     "images/secilmis-kareler/foto111.JPG",
     "images/secilmis-kareler/foto90.JPG",

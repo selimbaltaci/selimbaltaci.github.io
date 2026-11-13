@@ -1,0 +1,30 @@
+WHATSAPP PAYLAŞIM FOTOĞRAFI — SELİM BALTACI
+
+Bu paket sitenin görünümünü veya hikâyelerinizi değiştirmez.
+Ana site bağlantısı ve site.html paylaşılırken foto99.JPG kullanılır.
+Hikâye bağlantıları kendi fotoğraflarını kullanmaya devam eder.
+
+1. GitHub'a bağlı selimbaltaci.github.io klasörünüzün yedeğini alın.
+2. Paketteki web_fotograflari.py ve paylasim.json dosyalarını
+   selimbaltaci.github.io içine, galeriyi_guncelle.py yanına koyun.
+   Aynı adlı dosya sorulursa Değiştir seçin.
+3. Paketteki site-media içindeki site-paylasim-foto99.jpg fotoğrafını
+   mevcut site-media klasörünüzün İÇİNE kopyalayın.
+   Mevcut site-media klasörünü silmeyin veya tümüyle değiştirmeyin.
+4. Terminal'de site klasörünüzde şu komutu çalıştırın:
+   python3 galeriyi_guncelle.py
+5. GitHub Desktop'ta değişiklikleri gönderin: Commit, sonra Push origin.
+   .DS_Store veya __pycache__ dosyalarını göndermeyin.
+6. GitHub yayını tamamlandıktan sonra WhatsApp'ta şu bağlantıyı deneyin:
+   https://selimbaltaci.github.io/
+
+Paylaşım resmi 1200 × 630 piksel, yaklaşık 89 KB'dır.
+Fotoğrafın renkleri değiştirilmedi; paylaşım oranı için üst-alt kırpıldı.
+Sitelerin içindeki büyük fotoğraf ve galeri fotoğrafları değişmez.
+
+Bu paket bilgisayarınızdaki dosyaları hazırlamak içindir;
+yayındaki site siz Commit ve Push yapmadan değişmez.
+WhatsApp daha önceki önizlemeyi saklamışsa, yayın tamamlandıktan sonra
+bir defalık https://selimbaltaci.github.io/?paylasim=foto99 bağlantısını
+paylaşarak yeni önizlemeyi deneyebilirsiniz. WhatsApp'ın önizlemeyi
+ne zaman yenileyeceğini bu paket belirlemez.

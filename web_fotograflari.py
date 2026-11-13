@@ -191,13 +191,32 @@ def sablon_mu(ad):
     return ad.startswith("sablon-")
 
 
+def site_paylasimi(root, filename):
+    """Ana bağlantının seçilmiş görselini güncellemelerde de korur."""
+    root = Path(root)
+    config = json_oku(root / 'paylasim.json', {})
+    if filename not in config.get('pages', []):
+        return None
+    source = guvenli_yol(root, config['source'])
+    target = guvenli_yol(root, config['output'])
+    if source.exists():
+        image = ImageOps.fit(rgb_kopya(source), (1200, 630),
+                             Image.Resampling.LANCZOS, centering=(0.5, 0.65))
+        kaydet(image, target, 1200, 82)
+    if not target.exists():
+        raise ValueError('Paylaşım fotoğrafı bulunamadı: ' + config['source'])
+    with Image.open(target) as image:
+        width, height = image.size
+    return {'src': config['output'], 'width': width, 'height': height}
+
+
 def head_update(text, filename, root):
     url = SITE_URL if filename == "index.html" else SITE_URL + quote(filename)
     # Elle yazilan sayfada baslik ya da ozet unutabilir; guncelleyici bu yuzden durmamali.
     title_match = re.search(r"<title>(.*?)</title>", text, re.S)
     title = html.unescape(title_match.group(1)) if title_match else filename
     desc_match = re.search(r'<meta name="description" content="([^"]*)"', text)
-    desc = desc_match.group(1) if desc_match else ''
+    desc = html.unescape(desc_match.group(1)) if desc_match else ''
     # Keep one metadata source, never concatenate conflicting tags.
     text = re.sub(r'<meta (?:property="og:[^"]+"|name="twitter:[^"]+")[^>]*>\s*', '', text)
     text = re.sub(r'<link rel="(?:canonical|icon|apple-touch-icon)"[^>]*>\s*', '', text)
@@ -211,11 +230,16 @@ def head_update(text, filename, root):
             '<meta name="twitter:card" content="summary_large_image">']
     cache = json_oku(Path(root) / "foto-web.json", {})
     shown = re.findall(r'<img[^>]*data-source="([^"]+)"', text)
-    if shown and html.unescape(shown[0]) in cache:
+    share = site_paylasimi(root, filename)
+    if share is None and shown and html.unescape(shown[0]) in cache:
         share = cache[html.unescape(shown[0])]["variants"]["share"]
+    if share:
         photo_url = SITE_URL + quote(share["src"])
         tags += ['<meta property="og:image" content="' + photo_url + '">',
-                 '<meta name="twitter:image" content="' + photo_url + '">']
+                 '<meta name="twitter:image" content="' + photo_url + '">',
+                 '<meta property="og:image:type" content="image/jpeg">',
+                 '<meta property="og:image:width" content="' + str(share['width']) + '">',
+                 '<meta property="og:image:height" content="' + str(share['height']) + '">']
     return text.replace('</head>', '\n'.join(tags) + '\n</head>')
 
 

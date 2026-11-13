@@ -147,43 +147,6 @@
       }
     }
   },
-  "images/monochrom/foto110.JPG.jpg": {
-    "sha256": "794ebfa8a57c09b77e6a3dcb8105898e97e1a955e205978e2db1a4d73a7020b3",
-    "width": 2048,
-    "height": 1151,
-    "variants": {
-      "small": {
-        "src": "site-media/99878d1d1d44688cd7-small.jpg",
-        "width": 480,
-        "height": 270,
-        "bytes": 14329
-      },
-      "thumb": {
-        "src": "site-media/99878d1d1d44688cd7-thumb.jpg",
-        "width": 960,
-        "height": 540,
-        "bytes": 44887
-      },
-      "cover": {
-        "src": "site-media/99878d1d1d44688cd7-cover.jpg",
-        "width": 1600,
-        "height": 899,
-        "bytes": 115680
-      },
-      "share": {
-        "src": "site-media/99878d1d1d44688cd7-share.jpg",
-        "width": 1200,
-        "height": 674,
-        "bytes": 64425
-      },
-      "full": {
-        "src": "images/monochrom/foto110.JPG.jpg",
-        "width": 2048,
-        "height": 1151,
-        "bytes": 180681
-      }
-    }
-  },
   "images/monochrom/foto19.JPG": {
     "sha256": "19f2ab174cb5774e5d29632d8ae5c650651f8d75dfabe49ddcca5a58b14cc1e6",
     "width": 1365,
@@ -218,43 +181,6 @@
         "width": 1365,
         "height": 2048,
         "bytes": 283969
-      }
-    }
-  },
-  "images/monochrom/foto111.JPG.jpg": {
-    "sha256": "102fc84f556a84806fcf06c523e8453c0c7c04dce381135f80a79b83b7f4d1e1",
-    "width": 2048,
-    "height": 1536,
-    "variants": {
-      "small": {
-        "src": "site-media/c4f7edad2caba5180b-small.jpg",
-        "width": 480,
-        "height": 360,
-        "bytes": 36253
-      },
-      "thumb": {
-        "src": "site-media/c4f7edad2caba5180b-thumb.jpg",
-        "width": 960,
-        "height": 720,
-        "bytes": 147541
-      },
-      "cover": {
-        "src": "site-media/c4f7edad2caba5180b-cover.jpg",
-        "width": 1600,
-        "height": 1200,
-        "bytes": 415815
-      },
-      "share": {
-        "src": "site-media/c4f7edad2caba5180b-share.jpg",
-        "width": 1200,
-        "height": 900,
-        "bytes": 224822
-      },
-      "full": {
-        "src": "images/monochrom/foto111.JPG.jpg",
-        "width": 2048,
-        "height": 1536,
-        "bytes": 672267
       }
     }
   },
@@ -477,43 +403,6 @@
         "width": 1536,
         "height": 1152,
         "bytes": 164707
-      }
-    }
-  },
-  "images/monochrom/foto113.JPG.jpg": {
-    "sha256": "4c79b6996566779fdff862f4af757ffca345f2e72a3a1eb8fb9d259c5426e30c",
-    "width": 1152,
-    "height": 2048,
-    "variants": {
-      "small": {
-        "src": "site-media/660339147700683099-small.jpg",
-        "width": 270,
-        "height": 480,
-        "bytes": 10723
-      },
-      "thumb": {
-        "src": "site-media/660339147700683099-thumb.jpg",
-        "width": 540,
-        "height": 960,
-        "bytes": 32535
-      },
-      "cover": {
-        "src": "site-media/660339147700683099-cover.jpg",
-        "width": 900,
-        "height": 1600,
-        "bytes": 91491
-      },
-      "share": {
-        "src": "site-media/660339147700683099-share.jpg",
-        "width": 675,
-        "height": 1200,
-        "bytes": 47348
-      },
-      "full": {
-        "src": "images/monochrom/foto113.JPG.jpg",
-        "width": 1152,
-        "height": 2048,
-        "bytes": 149101
       }
     }
   },
@@ -924,6 +813,43 @@
       }
     }
   },
+  "images/monochrom/foto114.JPG": {
+    "sha256": "cd56f5c5716e2c11ff6694c5ff1336ac9ef71c1ebc71190169c3ce061c477c96",
+    "width": 1536,
+    "height": 2048,
+    "variants": {
+      "small": {
+        "src": "site-media/d84409f2690edfa484-small.jpg",
+        "width": 360,
+        "height": 480,
+        "bytes": 32350
+      },
+      "thumb": {
+        "src": "site-media/d84409f2690edfa484-thumb.jpg",
+        "width": 720,
+        "height": 960,
+        "bytes": 125999
+      },
+      "cover": {
+        "src": "site-media/d84409f2690edfa484-cover.jpg",
+        "width": 1200,
+        "height": 1600,
+        "bytes": 352789
+      },
+      "share": {
+        "src": "site-media/d84409f2690edfa484-share.jpg",
+        "width": 900,
+        "height": 1200,
+        "bytes": 191322
+      },
+      "full": {
+        "src": "images/monochrom/foto114.JPG",
+        "width": 1536,
+        "height": 2048,
+        "bytes": 535989
+      }
+    }
+  },
   "images/monochrom/foto60.JPG": {
     "sha256": "9c0cde1863a8f495c7c518c5e5315e9b8599a1833b3422f8b20bba0bd51115bd",
     "width": 1184,
@@ -1109,6 +1035,43 @@
       }
     }
   },
+  "images/monochrom/foto113.JPG": {
+    "sha256": "4c79b6996566779fdff862f4af757ffca345f2e72a3a1eb8fb9d259c5426e30c",
+    "width": 1152,
+    "height": 2048,
+    "variants": {
+      "small": {
+        "src": "site-media/822c0fd095356ad4e6-small.jpg",
+        "width": 270,
+        "height": 480,
+        "bytes": 10786
+      },
+      "thumb": {
+        "src": "site-media/822c0fd095356ad4e6-thumb.jpg",
+        "width": 540,
+        "height": 960,
+        "bytes": 33852
+      },
+      "cover": {
+        "src": "site-media/822c0fd095356ad4e6-cover.jpg",
+        "width": 900,
+        "height": 1600,
+        "bytes": 99104
+      },
+      "share": {
+        "src": "site-media/822c0fd095356ad4e6-share.jpg",
+        "width": 675,
+        "height": 1200,
+        "bytes": 50344
+      },
+      "full": {
+        "src": "images/monochrom/foto113.JPG",
+        "width": 1152,
+        "height": 2048,
+        "bytes": 149101
+      }
+    }
+  },
   "images/monochrom/foto106.JPG": {
     "sha256": "a0b8d89cfa3acc646072edcd1b8b574066321936819d68ca948fa76dc1a964e8",
     "width": 1536,
@@ -1220,6 +1183,43 @@
       }
     }
   },
+  "images/monochrom/foto110.JPG": {
+    "sha256": "71c797eb8354f84a688421e49d1991055354b4b1e38537393cc6809222d84ecb",
+    "width": 2048,
+    "height": 1151,
+    "variants": {
+      "small": {
+        "src": "site-media/bd1d1a58874092d406-small.jpg",
+        "width": 480,
+        "height": 270,
+        "bytes": 14356
+      },
+      "thumb": {
+        "src": "site-media/bd1d1a58874092d406-thumb.jpg",
+        "width": 960,
+        "height": 540,
+        "bytes": 45700
+      },
+      "cover": {
+        "src": "site-media/bd1d1a58874092d406-cover.jpg",
+        "width": 1600,
+        "height": 899,
+        "bytes": 121732
+      },
+      "share": {
+        "src": "site-media/bd1d1a58874092d406-share.jpg",
+        "width": 1200,
+        "height": 674,
+        "bytes": 66549
+      },
+      "full": {
+        "src": "images/monochrom/foto110.JPG",
+        "width": 2048,
+        "height": 1151,
+        "bytes": 180630
+      }
+    }
+  },
   "images/monochrom/foto104.JPG": {
     "sha256": "adb387328b4640da959fd43d169de0db33f36da5c97c8cb0972d03bac96421b8",
     "width": 2048,
@@ -1254,6 +1254,43 @@
         "width": 2048,
         "height": 1536,
         "bytes": 218699
+      }
+    }
+  },
+  "images/monochrom/foto111.JPG": {
+    "sha256": "102fc84f556a84806fcf06c523e8453c0c7c04dce381135f80a79b83b7f4d1e1",
+    "width": 2048,
+    "height": 1536,
+    "variants": {
+      "small": {
+        "src": "site-media/62a153ff5b806ceb82-small.jpg",
+        "width": 480,
+        "height": 360,
+        "bytes": 36303
+      },
+      "thumb": {
+        "src": "site-media/62a153ff5b806ceb82-thumb.jpg",
+        "width": 960,
+        "height": 720,
+        "bytes": 148594
+      },
+      "cover": {
+        "src": "site-media/62a153ff5b806ceb82-cover.jpg",
+        "width": 1600,
+        "height": 1200,
+        "bytes": 432210
+      },
+      "share": {
+        "src": "site-media/62a153ff5b806ceb82-share.jpg",
+        "width": 1200,
+        "height": 900,
+        "bytes": 227775
+      },
+      "full": {
+        "src": "images/monochrom/foto111.JPG",
+        "width": 2048,
+        "height": 1536,
+        "bytes": 672267
       }
     }
   },
@@ -1365,43 +1402,6 @@
         "width": 1536,
         "height": 2048,
         "bytes": 339382
-      }
-    }
-  },
-  "images/monochrom/foto114.JPG.jpg": {
-    "sha256": "cd56f5c5716e2c11ff6694c5ff1336ac9ef71c1ebc71190169c3ce061c477c96",
-    "width": 1536,
-    "height": 2048,
-    "variants": {
-      "small": {
-        "src": "site-media/168c4b65ddd846bec1-small.jpg",
-        "width": 360,
-        "height": 480,
-        "bytes": 32274
-      },
-      "thumb": {
-        "src": "site-media/168c4b65ddd846bec1-thumb.jpg",
-        "width": 720,
-        "height": 960,
-        "bytes": 125034
-      },
-      "cover": {
-        "src": "site-media/168c4b65ddd846bec1-cover.jpg",
-        "width": 1200,
-        "height": 1600,
-        "bytes": 342455
-      },
-      "share": {
-        "src": "site-media/168c4b65ddd846bec1-share.jpg",
-        "width": 900,
-        "height": 1200,
-        "bytes": 188840
-      },
-      "full": {
-        "src": "images/monochrom/foto114.JPG.jpg",
-        "width": 1536,
-        "height": 2048,
-        "bytes": 535989
       }
     }
   },
@@ -2885,6 +2885,43 @@
       }
     }
   },
+  "images/secilmis-kareler/foto115.JPG": {
+    "sha256": "a0d3be4d6cf3a7b0775aed98fc99b4168d0a86fe75ea505ac7f01722cb060c73",
+    "width": 2048,
+    "height": 1151,
+    "variants": {
+      "small": {
+        "src": "site-media/eb2868a77b6c777612-small.jpg",
+        "width": 480,
+        "height": 270,
+        "bytes": 13853
+      },
+      "thumb": {
+        "src": "site-media/eb2868a77b6c777612-thumb.jpg",
+        "width": 960,
+        "height": 540,
+        "bytes": 49097
+      },
+      "cover": {
+        "src": "site-media/eb2868a77b6c777612-cover.jpg",
+        "width": 1600,
+        "height": 899,
+        "bytes": 178756
+      },
+      "share": {
+        "src": "site-media/eb2868a77b6c777612-share.jpg",
+        "width": 1200,
+        "height": 674,
+        "bytes": 78836
+      },
+      "full": {
+        "src": "images/secilmis-kareler/foto115.JPG",
+        "width": 2048,
+        "height": 1151,
+        "bytes": 327641
+      }
+    }
+  },
   "images/secilmis-kareler/foto76.JPG": {
     "sha256": "cb6f262a6f8d0c61e70b99d669b23852e458f44b7ff88ffa264901425084ccd2",
     "width": 2048,
@@ -2919,6 +2956,43 @@
         "width": 2048,
         "height": 1152,
         "bytes": 92601
+      }
+    }
+  },
+  "images/secilmis-kareler/foto116.jpg": {
+    "sha256": "ed4aa084bdd6a92328b6a6d416c3111eaf01f91d7f14ceb102e16b2534dbec45",
+    "width": 2048,
+    "height": 1151,
+    "variants": {
+      "small": {
+        "src": "site-media/72131d9904c88c86fb-small.jpg",
+        "width": 480,
+        "height": 270,
+        "bytes": 20705
+      },
+      "thumb": {
+        "src": "site-media/72131d9904c88c86fb-thumb.jpg",
+        "width": 960,
+        "height": 540,
+        "bytes": 80479
+      },
+      "cover": {
+        "src": "site-media/72131d9904c88c86fb-cover.jpg",
+        "width": 1600,
+        "height": 899,
+        "bytes": 225608
+      },
+      "share": {
+        "src": "site-media/72131d9904c88c86fb-share.jpg",
+        "width": 1200,
+        "height": 674,
+        "bytes": 121653
+      },
+      "full": {
+        "src": "images/secilmis-kareler/foto116.jpg",
+        "width": 2048,
+        "height": 1151,
+        "bytes": 344823
       }
     }
   },
