@@ -1997,6 +1997,43 @@
       }
     }
   },
+  "images/yeni-kareler/foto117.JPG": {
+    "sha256": "60f234cda72d5b9a2405aef6e2033622fa9f8e241d2ce4c53a5193eb1324ad8d",
+    "width": 2048,
+    "height": 1365,
+    "variants": {
+      "small": {
+        "src": "site-media/7fa389c043683a312b-small.jpg",
+        "width": 480,
+        "height": 320,
+        "bytes": 13533
+      },
+      "thumb": {
+        "src": "site-media/7fa389c043683a312b-thumb.jpg",
+        "width": 960,
+        "height": 640,
+        "bytes": 44381
+      },
+      "cover": {
+        "src": "site-media/7fa389c043683a312b-cover.jpg",
+        "width": 1600,
+        "height": 1066,
+        "bytes": 123815
+      },
+      "share": {
+        "src": "site-media/7fa389c043683a312b-share.jpg",
+        "width": 1200,
+        "height": 800,
+        "bytes": 65540
+      },
+      "full": {
+        "src": "images/yeni-kareler/foto117.JPG",
+        "width": 2048,
+        "height": 1365,
+        "bytes": 185385
+      }
+    }
+  },
   "images/yeni-kareler/foto65.JPG": {
     "sha256": "34802cf1e9b6ecdc7301efef77714bf1e76918fab4cdd1f61b449e9019d79bb0",
     "width": 2048,
