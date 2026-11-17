@@ -2811,6 +2811,43 @@
       }
     }
   },
+  "images/secilmis-kareler/foto119.jpg": {
+    "sha256": "704177c4d0affdace306d019e4d50204b8ff7fdb133ff53b6f8d27650cc0198f",
+    "width": 2048,
+    "height": 1152,
+    "variants": {
+      "small": {
+        "src": "site-media/2d9b0a523d23465ec2-small.jpg",
+        "width": 480,
+        "height": 270,
+        "bytes": 19999
+      },
+      "thumb": {
+        "src": "site-media/2d9b0a523d23465ec2-thumb.jpg",
+        "width": 960,
+        "height": 540,
+        "bytes": 73077
+      },
+      "cover": {
+        "src": "site-media/2d9b0a523d23465ec2-cover.jpg",
+        "width": 1600,
+        "height": 900,
+        "bytes": 197020
+      },
+      "share": {
+        "src": "site-media/2d9b0a523d23465ec2-share.jpg",
+        "width": 1200,
+        "height": 675,
+        "bytes": 109188
+      },
+      "full": {
+        "src": "images/secilmis-kareler/foto119.jpg",
+        "width": 2048,
+        "height": 1152,
+        "bytes": 291262
+      }
+    }
+  },
   "images/secilmis-kareler/foto90.JPG": {
     "sha256": "210714322a986ded9a9beed4567ca7fef51a653b2a9252884dc92e1e71b06f83",
     "width": 1151,
@@ -2845,6 +2882,43 @@
         "width": 1151,
         "height": 2048,
         "bytes": 275602
+      }
+    }
+  },
+  "images/secilmis-kareler/foto118.jpg": {
+    "sha256": "80c021d7b09ff525611a2af0979fa9d5b720e67f01d2f7bdd3ece718a7f92a2c",
+    "width": 1151,
+    "height": 2048,
+    "variants": {
+      "small": {
+        "src": "site-media/3f8ec1722f9a7e50cf-small.jpg",
+        "width": 270,
+        "height": 480,
+        "bytes": 20720
+      },
+      "thumb": {
+        "src": "site-media/3f8ec1722f9a7e50cf-thumb.jpg",
+        "width": 540,
+        "height": 960,
+        "bytes": 78084
+      },
+      "cover": {
+        "src": "site-media/3f8ec1722f9a7e50cf-cover.jpg",
+        "width": 899,
+        "height": 1600,
+        "bytes": 242651
+      },
+      "share": {
+        "src": "site-media/3f8ec1722f9a7e50cf-share.jpg",
+        "width": 674,
+        "height": 1200,
+        "bytes": 120706
+      },
+      "full": {
+        "src": "images/secilmis-kareler/foto118.jpg",
+        "width": 1151,
+        "height": 2048,
+        "bytes": 388684
       }
     }
   },
