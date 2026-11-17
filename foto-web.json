@@ -332,6 +332,43 @@
       }
     }
   },
+  "images/monochrom/foto121.JPG": {
+    "sha256": "0e80588297734aa87016ff8ba0cfb6713659ef3e6e897ece08dd5936de477f2c",
+    "width": 2048,
+    "height": 1152,
+    "variants": {
+      "small": {
+        "src": "site-media/bef5e93d5fd5eb92d5-small.jpg",
+        "width": 480,
+        "height": 270,
+        "bytes": 7252
+      },
+      "thumb": {
+        "src": "site-media/bef5e93d5fd5eb92d5-thumb.jpg",
+        "width": 960,
+        "height": 540,
+        "bytes": 21200
+      },
+      "cover": {
+        "src": "site-media/bef5e93d5fd5eb92d5-cover.jpg",
+        "width": 1600,
+        "height": 900,
+        "bytes": 69826
+      },
+      "share": {
+        "src": "site-media/bef5e93d5fd5eb92d5-share.jpg",
+        "width": 1200,
+        "height": 675,
+        "bytes": 31738
+      },
+      "full": {
+        "src": "images/monochrom/foto121.JPG",
+        "width": 2048,
+        "height": 1152,
+        "bytes": 118469
+      }
+    }
+  },
   "images/monochrom/foto69.JPG": {
     "sha256": "e642bc9181c5b7ddee08f2b70c9777073a909f2e15ff22c5b26a5f2e7526f2ed",
     "width": 1536,
