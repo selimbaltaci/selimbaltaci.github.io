@@ -2848,6 +2848,43 @@
       }
     }
   },
+  "images/secilmis-kareler/foto122.jpg": {
+    "sha256": "5f13ab4e4da39001ff7a81e45ea500e127fb708300586dea11af2d50eb0ee3de",
+    "width": 2048,
+    "height": 1152,
+    "variants": {
+      "small": {
+        "src": "site-media/7d5f3296cd81e30f3a-small.jpg",
+        "width": 480,
+        "height": 270,
+        "bytes": 18443
+      },
+      "thumb": {
+        "src": "site-media/7d5f3296cd81e30f3a-thumb.jpg",
+        "width": 960,
+        "height": 540,
+        "bytes": 69337
+      },
+      "cover": {
+        "src": "site-media/7d5f3296cd81e30f3a-cover.jpg",
+        "width": 1600,
+        "height": 900,
+        "bytes": 193445
+      },
+      "share": {
+        "src": "site-media/7d5f3296cd81e30f3a-share.jpg",
+        "width": 1200,
+        "height": 675,
+        "bytes": 104327
+      },
+      "full": {
+        "src": "images/secilmis-kareler/foto122.jpg",
+        "width": 2048,
+        "height": 1152,
+        "bytes": 296151
+      }
+    }
+  },
   "images/secilmis-kareler/foto44.JPG": {
     "sha256": "353a0a14d6b563d0d02f6f45b7644604474a84ad40e8c03b84210e1d703039ae",
     "width": 2048,

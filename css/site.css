@@ -471,12 +471,13 @@ body.menu-open { overflow: hidden; }
 /* =========================================================
    İLETİŞİM
    ========================================================= */
-.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); min-height: calc(100svh - var(--bar) - 80px); }
-.contact .intro { padding: 72px 64px 72px 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; }
+.contact { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); min-height: calc(100svh - var(--bar) - 80px); }
+.contact .intro { padding: 72px 40px 72px 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; }
 .contact .kicker { color: var(--muted); }
-.contact h1 { margin: 20px 0 0; max-width: 16ch; font-family: var(--display); font-weight: 400; font-size: clamp(40px, 4.2vw, 64px); line-height: 1.05; }
+.contact h1 { margin: 20px 0 0; max-width: 24ch; font-family: var(--display); font-weight: 400; font-size: 44px; line-height: 1.16; }
 .contact .contact-links { margin-top: auto; padding-top: 56px; }
-.contact-form { padding: 72px 0 72px 64px; display: flex; flex-direction: column; gap: 38px; }
+.contact-form { min-width: 0; padding: 72px 0 72px 40px; display: flex; flex-direction: column; gap: 38px; }
+.contact .contact-links .k, .contact-form .field label { color: var(--soft); font-size: 12px; letter-spacing: 0; }
 .field { display: flex; flex-direction: column; gap: 10px; }
 .field label { color: var(--muted); }
 .field input, .field textarea {
@@ -495,7 +496,7 @@ body.menu-open { overflow: hidden; }
 }
 .field textarea { min-height: 150px; resize: vertical; }
 .field input:focus, .field textarea:focus { outline: none; border-bottom-color: var(--fg); }
-.form-actions { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.form-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .send {
     display: inline-flex; align-items: center; gap: 16px;
     padding: 16px 30px;
@@ -507,9 +508,15 @@ body.menu-open { overflow: hidden; }
     transition: background .35s ease, color .35s ease, gap .4s var(--ease);
 }
 .send:hover { background: var(--fg); color: var(--paper); gap: 22px; }
-.form-note { margin: 0; max-width: 36ch; font-size: 13px; color: var(--muted); }
+.form-note { margin: 0; max-width: 48ch; font-size: 15px; line-height: 1.6; color: var(--soft); }
 .form-status { margin: 0; font-family: var(--display); font-style: italic; font-size: 21px; color: var(--soft); }
 .form-status:empty { display: none; }
+@media (min-width: 761px) and (max-width: 1000px) {
+    .contact { grid-template-columns: 1fr; }
+    .contact .intro { padding: 48px 0 40px; border-right: 0; border-bottom: 1px solid var(--line); }
+    .contact .contact-links { padding-top: 36px; }
+    .contact-form { padding: 44px 0 64px; gap: 32px; }
+}
 
 /* =========================================================
    BÜYÜK FOTOĞRAF (beyaz zemin)
@@ -551,7 +558,8 @@ body.menu-open { overflow: hidden; }
 @keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes photoIn { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
-.hero-img { animation: photoIn 2.2s var(--ease) both; }
+@keyframes heroIn { from { opacity: 0; } to { opacity: 1; } }
+.hero-img { animation: heroIn 2.2s var(--ease) both; }
 .hero-text { animation: fadeUp 1.3s var(--ease) .2s both; }
 
 /* =========================================================
@@ -639,6 +647,7 @@ body.menu-open { overflow: hidden; }
     .about .text { padding: 48px var(--pad) 64px; }
     .contact { grid-template-columns: 1fr; }
     .contact .intro { padding: 48px 0 40px; border-right: 0; border-bottom: 1px solid var(--line); }
+    .contact h1 { font-size: 36px; }
     .contact .contact-links { padding-top: 36px; }
     .contact-form { padding: 44px 0 64px; gap: 32px; }
     .v-stage { padding: 16px 12px 80px; }
